@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'NHaasGroteskDsPro-65Md' !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+#carousel {
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+#carouselExampleControls{
+  object-fit: contain;
 }
