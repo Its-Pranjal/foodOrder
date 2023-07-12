@@ -4,9 +4,8 @@ const Order = require('../models/Orders');
 
 router.post('/myOrderData', async (req, res) => {
   try {
-    console.log(req.body.email);
-    const eId = await Order.findOne({ email: req.body.email });
-    res.json({ orderData: eId });
+    let myData = await Order.findOne({ email: req.body.email });
+    res.json({ orderData: myData });
   } catch (error) {
     res.send("Error: " + error.message);
   }

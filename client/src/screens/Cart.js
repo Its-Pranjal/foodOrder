@@ -16,24 +16,31 @@ export default function Cart() {
   }
 
   const handleCheckOut = async () => {
-    const userEmail = localStorage.getItem('userEmail');
-    const response = await fetch('http://localhost:5000/api/orderData', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        order_data: data,
-        email: userEmail,
-        order_date: new Date().toDateString(),
-      }),
-    });
-    console.log('JSON RESPONSE:::::', response.status);
-    if (response.status === 200) {
-      dispatch({ type: 'DROP' });
+    //let userEmail = localStorage.getItem('userEmail');
+    //let response = await fetch("http://localhost:5000/api/orderData")
+    try {
+      let userEmail = localStorage.getItem('userEmail');
+      let response = await fetch('http://localhost:5000/api/orderData',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          order_data: data, 
+          email: userEmail,
+          order_date: new Date().toDateString(),
+        }),
+      });
+      console.log('order response', response.status);
+      if (response.status === 200) {
+        dispatch({ type: 'DROP' }); 
+      }
+    } catch (error) {
+      console.error('An error occurred during checkout:', error);
+      
     }
   };
-
+  
   const totalPrice = data.reduce((total, food) => total + food.price, 0);
 
   return (

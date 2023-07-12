@@ -28,6 +28,7 @@ export const Login = () => {
         setError("Enter valid credentials");
         setSuccess("");
       } else {
+        localStorage.setItem("userEmail", credentials.email);
         localStorage.setItem("authToken", json.authToken);
         setError("");
         setSuccess("Login successful");
